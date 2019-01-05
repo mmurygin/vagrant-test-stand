@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
     host.vm.box_check_update = false
 
     host.vm.hostname = "s1"
-    host.vm.network "private_network", ip: "192.168.100.1"
+    host.vm.network "private_network", ip: "10.0.1.10"
   end
 
   config.vm.define "s2" do |host|
@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
     host.vm.box_check_update = false
 
     host.vm.hostname = "s2"
-    host.vm.network "private_network", ip: "192.168.100.1"
+    host.vm.network "private_network", ip: "10.0.1.11"
   end
 
   config.vm.define "cl" do |host|
@@ -23,6 +23,6 @@ Vagrant.configure("2") do |config|
     host.vm.box_check_update = false
 
     host.vm.hostname = "cl"
-    host.vm.network "private_network", ip: "192.168.100.1"
+    host.vm.network "private_network", ip: "10.0.1.2"
   end
 end
