@@ -23,6 +23,6 @@ Vagrant.configure("2") do |config|
     host.vm.box_check_update = false
 
     host.vm.hostname = "cl"
-    host.vm.network "private_network", ip: "10.0.1.2"
+    host.vm.network "private_network", ip: "10.0.1.12"
   end
 end
