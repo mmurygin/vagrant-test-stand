@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define "s1" do |host|
+    host.vm.box = "centos/7"
+    host.vm.box_check_update = false
+
+    host.vm.hostname = "s1"
+    host.vm.network "private_network", ip: "10.0.10.2"
+    host.vm.provision "shell", path: "provision.sh"
+  end
+
+  config.vm.define "s2" do |host|
+    host.vm.box = "centos/7"
+    host.vm.box_check_update = false
+
+    host.vm.hostname = "s2"
+    host.vm.network "private_network", ip: "10.0.10.3"
+    host.vm.provision "shell", path: "provision.sh"
+  end
+end
