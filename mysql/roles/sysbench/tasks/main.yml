@@ -1,0 +1,6 @@
+---
+- name: install sysbench
+  yum:
+    name: sysbench
+    state: present
+...

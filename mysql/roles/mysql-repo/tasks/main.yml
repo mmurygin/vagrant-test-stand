@@ -1,0 +1,4 @@
+- name: install mysql repo
+  yum:
+    name: https://dev.mysql.com/get/mysql80-community-release-el7-2.noarch.rpm
+    state: present

@@ -3,5 +3,8 @@
   hosts: all
   become: True
   roles:
+    - mysql-repo
     - mysql-server
+    - epel
+    - sysbench
 ...
