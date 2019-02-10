@@ -1,0 +1,7 @@
+---
+- name: Setup mysql8
+  hosts: all
+  become: True
+  roles:
+    - mysql-server
+...

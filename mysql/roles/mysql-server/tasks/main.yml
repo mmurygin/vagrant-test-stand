@@ -1,0 +1,17 @@
+---
+- name: install mysql repo
+  yum:
+    name: https://dev.mysql.com/get/mysql80-community-release-el7-2.noarch.rpm
+    state: present
+
+- name: install mysql server
+  yum:
+    name: mysql-community-server
+    state: present
+
+- name: enable mysql server
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
+
