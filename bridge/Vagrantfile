@@ -12,7 +12,7 @@ MACHINES = {
             { ip: '10.10.10.3', adapter: 2, netmask: "255.255.255.0", virtualbox__intnet: "net2" },
         ],
     },
-    :router => {
+    :bridge => {
         net: [
             { adapter: 2, virtualbox__intnet: "net1" },
             { adapter: 3, virtualbox__intnet: "net2" },
@@ -29,6 +29,20 @@ Vagrant.configure("2") do |config|
 
             boxconfig[:net].each do |ipconf|
                 box.vm.network "private_network", ipconf
+            end
+
+            if boxname.to_s == "bridge" then
+                box.vm.provision "shell", inline: <<-SHELL
+                    nmcli con delete 'Wired connection 1'
+                    nmcli con delete 'Wired connection 2'
+
+                    nmcli con add con-name br0 type bridge ifname br0
+                    nmcli con add con-name br0-slave-1 type ethernet ifname eth1 master br0
+                    nmcli con add con-name br0-slave-2 type ethernet ifname eth2 master br0
+
+                    nmcli con modify br0 ipv4.method manual ipv4.addresses 10.10.10.100/24
+                    nmcli con up br0
+                SHELL
             end
 
             box.vm.provision "shell", inline: "yum install -y tcpdump"
