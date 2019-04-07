@@ -7,3 +7,7 @@ mandb
 
 yum install -y vim wget
 
+wget https://raw.githubusercontent.com/muryginm/vim-config/master/.vimrc -O /root/.vimrc
+cp /root/.vimrc /home/vagrant/.vimrc
+chown vagrant /home/vagrant/.vimrc
+
