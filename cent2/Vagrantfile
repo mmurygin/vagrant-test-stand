@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
     host.vm.box_check_update = false
 
     host.vm.hostname = "s1"
-    host.vm.network "private_network", ip: "10.0.11.2"
+    host.vm.network "private_network", ip: "10.0.10.2"
     host.vm.provision "shell", path: "provision.sh"
   end
 
@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
     host.vm.box_check_update = false
 
     host.vm.hostname = "s2"
-    host.vm.network "private_network", ip: "10.0.11.3"
+    host.vm.network "private_network", ip: "10.0.10.3"
     host.vm.provision "shell", path: "provision.sh"
   end
 end
