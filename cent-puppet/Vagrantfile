@@ -2,17 +2,14 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "centos/7"
+  config.vm.box = "ubuntu/bionic64"
 
   config.vm.network "forwarded_port", guest: 80, host: 8080
 
-  config.vm.provision "shell", inline: <<-SHELL
-    echo "Installing Puppet agent..."
-    sudo rpm -Uvh https://yum.puppet.com/puppet6-release-el-7.noarch.rpm
-    sudo yum install puppet-agent -y
-  SHELL
+  config.vm.provision "shell", path: "provision/setup-puppet.sh"
 
   config.vm.provision "puppet" do |puppet|
+    puppet.manifests_path = "provision/manifests"
     puppet.manifest_file = "init.pp"
 	puppet.options = "--verbose"
   end
